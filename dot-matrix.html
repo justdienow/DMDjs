@@ -25,16 +25,16 @@
         virtualMemory[i] = Array(dotMatrixCols).fill(0);
       }
 
-      // const letters = [
-      //   "0x7E", "0x11", "0x11", "0x11", "0x7E", // A
-      //   "0x7F", "0x49", "0x49", "0x49", "0x36"  // B
-      //   ];
+      const letters = [
+        "0x7E", "0x11", "0x11", "0x11", "0x7E", // A
+        "0x7F", "0x49", "0x49", "0x49", "0x36"  // B
+        ];
 
-      // for (let i = 0; i < letters.length; i++) {
-      //   for (let j = 0; j < 8; j++) {
-      //     virtualMemory[i][j] = (letters[i] & (1 << j)) >> j;
-      //   }
-      // }
+      for (let i = 0; i < letters.length; i++) {
+        for (let j = 0; j < 8; j++) {
+          virtualMemory[i][j] = (letters[i] & (1 << j)) >> j;
+        }
+      }
 
       // let rotatedLetters = [];
       // for (let col = 0; col < 8; col++) {

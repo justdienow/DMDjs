@@ -242,7 +242,7 @@ Matrix layout in "virtuial RAM" - x and y location (0,0 is the top left corner)
 
 KNOWN ISSUES: 
 1. As you add more displays, the slower the page loads by an order of magnitude; so, some 
-optimisation will need to be done.
+optimization will need to be done.
 2. As you add more displays down, either the bDMDScreenRAM gets corrupt and anomalies
 present themselves.
 
