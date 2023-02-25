@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      canvas {
+        border: 1px solid black;
+        background-color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="dotMatrix" width="640" height="320"></canvas>
+    
+    <script>
+      const canvas = document.getElementById('dotMatrix');
+      const ctx = canvas.getContext('2d');
+
+      const dotDiameter = 10;
+      const dotSpacing = 20;
+      const dotMatrixCols = 32;
+      const dotMatrixRows = 16;
+
+      let virtualMemory = [];
+      for (let i = 0; i < dotMatrixRows; i++) {
+        virtualMemory[i] = Array(dotMatrixCols).fill(0);
+      }
+
+      const letters = [
+        "0x7E", "0x11", "0x11", "0x11", "0x7E", // A
+        "0x7F", "0x49", "0x49", "0x49", "0x36"  // B
+        ];
+
+      for (let i = 0; i < letters.length; i++) {
+        for (let j = 0; j < 8; j++) {
+          virtualMemory[i][j] = (letters[i] & (1 << j)) >> j;
+        }
+      }
+
+      // let rotatedLetters = [];
+      // for (let col = 0; col < 8; col++) {
+      //   let row = 0;
+      //   for (let i = 0; i < 7; i++) {
+      //     let bytes = parseInt(letters[i], 16);
+      //     row |= ((bytes & (1 << col)) >> col) << (6 - i);
+      //   }
+      //   rotatedLetters.push(row);
+      // }
+
+      // //console.log(rotatedLetters);
+
+      // for (let row = 0; row < dotMatrixRows; row++) {
+      //   for (let col = 0; col < dotMatrixCols; col++) {
+      //     let letterIndex = col % 8;
+      //     let bitIndex = row;
+      //     virtualMemory[row][col] = (rotatedLetters[letterIndex] & (1 << bitIndex)) >> bitIndex;
+      //   }
+      // }
+
+      for (let i = 0; i < dotMatrixRows; i++) {
+        for (let j = 0; j < dotMatrixCols; j++) {
+          if(virtualMemory[i][j] === 1) {
+            ctx.fillStyle = "red"; 
+          } else {
+            ctx.fillStyle = "#4D0000";
+          }
+          ctx.beginPath();
+          ctx.arc(j * dotSpacing + dotSpacing / 2, i * dotSpacing + dotSpacing / 2, dotDiameter / 2, 0, 2 * Math.PI);
+          ctx.fill(); 
+        }
+      }
+    </script>
+  </body>
+</html>
